@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import ListScreen from "./src/screens/ListScreen";
+import FormScreen from "./src/screens/FormScreen";
+import DetailScreen from "./src/screens/DetailScreen";
+
+import { RootStackParamList } from "./src/types/navigation";
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="ListScreen"
+          component={ListScreen}
+          options={{ title: "Inventario" }}
+        />
+
+        <Stack.Screen
+          name="FormScreen"
+          component={FormScreen}
+          options={{ title: "Formulario" }}
+        />
+
+        <Stack.Screen
+          name="DetailScreen"
+          component={DetailScreen}
+          options={{ title: "Detalle Gadget" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
